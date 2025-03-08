@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "nutricao-app"
+version = "0.1.0"
+description = ""
+authors = ["FRANCISCO A C LIMA <franciscol@tjsp.jus.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+streamlit = "^1.43.1"
+pandas = "^2.2.3"
+matplotlib = "^3.10.1"
+plotly = "^6.0.0"
+numpy = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
