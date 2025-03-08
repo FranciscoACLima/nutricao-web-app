@@ -12,6 +12,7 @@ pandas = "^2.2.3"
 matplotlib = "^3.10.1"
 plotly = "^6.0.0"
 numpy = "^2.2.3"
+sqlalchemy = "^2.0.38"
 
 
 [build-system]

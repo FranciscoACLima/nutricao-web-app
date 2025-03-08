@@ -10,6 +10,8 @@ import requests
 import io
 import os
 
+from nutricao_app.models import obter_metas
+
 # Configuração da página
 st.set_page_config(
     page_title="Acompanhamento Nutricional",
@@ -83,6 +85,7 @@ def inicializar_bd():
     )
     ''')
 
+    conn.commit()
     conn.commit()
     conn.close()
 
@@ -189,28 +192,28 @@ def buscar_alimento_taco(nome_alimento):
     return df_resultados
 
 # Função para obter informações nutricionais de um alimento específico
-def obter_info_nutricional(nome_exato):
-    conn = conectar_bd()
-    cursor = conn.cursor()
+# def obter_info_nutricional(nome_exato):
+#     conn = conectar_bd()
+#     cursor = conn.cursor()
 
-    cursor.execute('''
-    SELECT energia_kcal, proteina_g, lipideos_g, carboidrato_g
-    FROM alimentos_taco
-    WHERE nome = ?
-    ''', (nome_exato,))
+#     cursor.execute('''
+#     SELECT energia_kcal, proteina_g, lipideos_g, carboidrato_g
+#     FROM alimentos_taco
+#     WHERE nome = ?
+#     ''', (nome_exato,))
 
-    resultado = cursor.fetchone()
-    conn.close()
+#     resultado = cursor.fetchone()
+#     conn.close()
 
-    if not resultado:
-        return None
+#     if not resultado:
+#         return None
 
-    return {
-        'calorias': resultado[0],
-        'proteinas': resultado[1],
-        'gorduras': resultado[2],
-        'carboidratos': resultado[3]
-    }
+#     return {
+#         'calorias': resultado[0],
+#         'proteinas': resultado[1],
+#         'gorduras': resultado[2],
+#         'carboidratos': resultado[3]
+#     }
 
 # Função para criar dados de exemplo no banco de dados
 def criar_dados_exemplo():
@@ -282,33 +285,33 @@ def criar_dados_exemplo():
     conn.close()
 
 # Função para obter metas do banco de dados
-def obter_metas():
-    conn = conectar_bd()
-    cursor = conn.cursor()
+# def obter_metas():
+#     conn = conectar_bd()
+#     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM metas WHERE id = 1")
-    resultado = cursor.fetchone()
+#     cursor.execute("SELECT * FROM metas WHERE id = 1")
+#     resultado = cursor.fetchone()
 
-    conn.close()
+#     conn.close()
 
-    if resultado:
-        return {
-            'calorias_diarias': resultado[1],
-            'proteinas_diarias': resultado[2],
-            'carboidratos_diarios': resultado[3],
-            'gorduras_diarias': resultado[4],
-            'peso_meta': resultado[5],
-            'gordura_corporal_meta': resultado[6]
-        }
-    else:
-        return {
-            'calorias_diarias': 2000.0,
-            'proteinas_diarias': 150.0,
-            'carboidratos_diarios': 225.0,
-            'gorduras_diarias': 65.0,
-            'peso_meta': 70.0,
-            'gordura_corporal_meta': 15.0
-        }
+#     if resultado:
+#         return {
+#             'calorias_diarias': resultado[1],
+#             'proteinas_diarias': resultado[2],
+#             'carboidratos_diarios': resultado[3],
+#             'gorduras_diarias': resultado[4],
+#             'peso_meta': resultado[5],
+#             'gordura_corporal_meta': resultado[6]
+#         }
+#     else:
+#         return {
+#             'calorias_diarias': 2000.0,
+#             'proteinas_diarias': 150.0,
+#             'carboidratos_diarios': 225.0,
+#             'gorduras_diarias': 65.0,
+#             'peso_meta': 70.0,
+#             'gordura_corporal_meta': 15.0
+#         }
 
 # Aplicar estilo
 def aplicar_estilo():
